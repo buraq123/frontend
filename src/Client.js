@@ -7,7 +7,10 @@ const {id} = useParams();
 
 const [client,setClient] = useState('');
 const [name,setName] = useState();
-const [number,setNumber] = useState();
+const [address,setAddress] = useState();
+const [postcode,setPostcode] = useState();
+const [city,setCity] = useState();
+
 
 useEffect(()=>{
     service.getOneClient(id)
@@ -15,7 +18,10 @@ useEffect(()=>{
         console.log("client",response.data)
         setClient(response.data)
         setName(response.data.name)
-        setNumber(response.data.number)
+        setAddress(response.data.address)
+        setPostcode(response.data.postCode)
+        setCity(response.data.city)
+
     })
 
    
@@ -28,13 +34,14 @@ const updateClient = (e) =>{
     const newclient = {
         ...client,
         name : name,
-        number: number
+        address : address,
+        postCode : postcode,
+        city : city
     }
     
     service.updateClient(id,newclient)
     .then(response=>{
-        console.log("sdadsaasds");
-        
+        console.log("sdadsaasds");    
     })
 
 }
@@ -43,19 +50,37 @@ console.log(name)
 return(
     <form >
     <div class="form-group">
-     <label>Name;</label>   
+
+    <label>Name :</label>   
     <input 
-       class="form-control"
+        class="form-control"
         id="name"
         value={name}
         onChange={(e) => setName(e.target.value)}
     />
 
+    <label>Address :</label>   
     <input 
-    class="form-control"
-        id="number"
-        value={number}
-        onChange={(e) => setNumber(e.target.value)}
+       class="form-control"
+        id="address"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+    />
+
+    <label>PostCode :</label>  
+    <input 
+       class="form-control"
+        id="postcode"
+        value={postcode}
+        onChange={(e) => setPostcode(e.target.value)}
+    />
+
+    <label>City:</label>          
+    <input 
+        class="form-control"
+        id="city"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
     />
     </div>
     <button onClick={updateClient} class="btn btn-success" >submit</button>
