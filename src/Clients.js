@@ -26,14 +26,18 @@ useEffect(()=>{
       <tbody>
         <tr>
           <td>Name</td>
-          <td>Number</td>
+          <td>Address</td>
+          <td>PostCode</td>
+          <td>City</td>
           <td>Update</td>
         </tr>
         {
           clients.map(client =>(
             <tr key={client.id}>
               <td>{client.name}</td>
-              <td>{client.number}</td>
+              <td>{client.address}</td>
+              <td>{client.postCode}</td>
+              <td>{client.city}</td>
               <td>
                 <Link to={`/clients/${client.id}`} class="btn btn-info" >Update</Link>
               </td>

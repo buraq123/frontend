@@ -5,19 +5,22 @@ import service from "./service";
 const CreateClient = () =>{
 
     const [name,setName] = useState();
-    const [number,setNumber] = useState();
-
+    const [address,setAddress] = useState();
+    const [postcode,setPostcode] = useState();
+    const [city,setCity] = useState();
 
     const createClient = (e) =>{
         e.preventDefault();
         const newclient = {
             name : name,
-            number: number
+            address : address,
+            postCode : postcode,
+            city : city
         }
         
         service.createClient(newclient)
         .then(response=>{
-            console.log("!111",number);   
+            console.log(newclient);   
         })
     
     }
@@ -27,17 +30,32 @@ const CreateClient = () =>{
     return(
         <form>
         <div>
+         <label>Name :</label>   
         <input 
-           
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
         />
     
+        <label>Address :</label>  
         <input 
-            id="number"
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
+            id="address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+        />
+
+        <label>PostCode :</label>  
+        <input 
+            id="postcode"
+            value={postcode}
+            onChange={(e) => setPostcode(e.target.value)}
+        />
+
+        <label>City :</label>
+        <input 
+            id="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
         />
         </div>
         <button onClick={createClient} >submit</button>
